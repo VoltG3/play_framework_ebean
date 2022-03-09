@@ -9,16 +9,21 @@ GET     /                           controllers.HomeController.index()
 GET     /computers                  controllers.HomeController.list(request: Request, p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
 GET     /department                 controllers.HomeControllerDepartment.list(request: Request, p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
 
-# Add computer
+# Add Chapter
 GET     /computers/new              controllers.HomeController.create(request: Request)
 POST    /computers                  controllers.HomeController.save(request: Request)
+GET     /department/new             controllers.HomeControllerDepartment.create(request: Request)
+POST    /department                 controllers.HomeControllerDepartment.save(request: Request)
 
-# Edit existing computer
+# Edit existing chapter
 GET     /computers/:id              controllers.HomeController.edit(request: Request, id:Long)
 POST    /computers/:id              controllers.HomeController.update(request: Request, id:Long)
+GET     /department/:id             controllers.HomeControllerDepartment.edit(request: Request, id:Long)
+POST    /department/:id             controllers.HomeControllerDepartment.update(request: Request, id:Long)
 
-# Delete a computer
+# Delete a chapter
 POST    /computers/:id/delete       controllers.HomeController.delete(id:Long)
+POST    /department/:id/delete      controllers.HomeControllerDepartment.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

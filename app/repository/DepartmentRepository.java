@@ -48,4 +48,46 @@ public class DepartmentRepository {
     public CompletionStage<Optional<Department>> lookup(Long id) {
         return supplyAsync(() -> Optional.ofNullable(ebeanServer.find(Department.class).setId(id).findOne()), executionContext);
     }
+
+    public CompletionStage<Optional<Long>> update(Long id, Department newDepartmentData) {
+        return supplyAsync(() -> {
+            Transaction txn = ebeanServer.beginTransaction();
+            Optional<Long> value = Optional.empty();
+            try {
+                Department savedDepartment = ebeanServer.find(Department.class).setId(id).findOne();
+                if (savedDepartment != null) {
+                    savedDepartment.company = newDepartmentData.company;
+                    savedDepartment.created_at = newDepartmentData.created_at;
+                    savedDepartment.name = newDepartmentData.name;
+
+                    savedDepartment.update();
+                    txn.commit();
+                    value = Optional.of(id);
+                }
+            } finally {
+                txn.end();
+            }
+            return value;
+        }, executionContext);
+    }
+
+    public CompletionStage<Optional<Long>>  delete(Long id) {
+        return supplyAsync(() -> {
+            try {
+                final Optional<Department> departmentOptional = Optional.ofNullable(ebeanServer.find(Department.class).setId(id).findOne());
+                departmentOptional.ifPresent(Model::delete);
+                return departmentOptional.map(c -> c.id);
+            } catch (Exception e) {
+                return Optional.empty();
+            }
+        }, executionContext);
+    }
+
+    public CompletionStage<Long> insert(Department department) {
+        return supplyAsync(() -> {
+             department.id = System.currentTimeMillis(); // not ideal, but it works
+             ebeanServer.insert(department);
+             return department.id;
+        }, executionContext);
+    }
 }

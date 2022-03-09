@@ -70,6 +70,9 @@
         <button type="submit" id="searchsubmit" class="btn btn-primary mb-2">Filter by name</button>
       </form>
     </div>
+    <div class="col-sm-6">
+      <a href="@routes.HomeControllerDepartment.create()" id="add" class="btn btn-success float-right" role="button"1>Add a new department</a>
+    </div>
   </div> 
 
   @if(currentPage.getTotalCount == 0) {
@@ -92,12 +95,11 @@
 
       @for(department <- currentPage.getList.asScala) {
         <tr>
-
           <td>
           @if(department.name == null) {
               <em>-</em>
           } else {
-              @department.name
+            <a href="@routes.HomeControllerDepartment.edit(department.id)">@department.name</a>
           }
           </td>
           <td>
