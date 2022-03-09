@@ -5,8 +5,9 @@
 # Default path will just redirect to the computer list
 GET     /                           controllers.HomeController.index()
 
-# Computers list (look at the default values for pagination parameters)
+# Chapter list (look at the default values for pagination parameters)
 GET     /computers                  controllers.HomeController.list(request: Request, p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
+GET     /department                 controllers.HomeControllerDepartment.list(request: Request, p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
 
 # Add computer
 GET     /computers/new              controllers.HomeController.create(request: Request)
