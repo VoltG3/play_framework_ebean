@@ -85,7 +85,7 @@ public class DepartmentRepository {
 
     public CompletionStage<Long> insert(Department department) {
         return supplyAsync(() -> {
-             department.id = System.currentTimeMillis(); // not ideal, but it works
+             //department.id = System.currentTimeMillis(); // not ideal, but it works
              ebeanServer.insert(department);
              return department.id;
         }, executionContext);

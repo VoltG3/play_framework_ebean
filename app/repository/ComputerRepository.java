@@ -86,7 +86,7 @@ public class ComputerRepository {
 
     public CompletionStage<Long> insert(Computer computer) {
         return supplyAsync(() -> {
-             computer.id = System.currentTimeMillis(); // not ideal, but it works
+             //computer.id = System.currentTimeMillis(); // not ideal, but it works
              ebeanServer.insert(computer);
              return computer.id;
         }, executionContext);

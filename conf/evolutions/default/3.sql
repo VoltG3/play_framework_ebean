@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table department (
-  id                        bigint not null,
+  id                        bigserial not null,
   name                      varchar(255),
   created_at                timestamp,
   company_id                bigint,

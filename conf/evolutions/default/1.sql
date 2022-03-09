@@ -9,7 +9,7 @@ create table company (
 ;
 
 create table computer (
-  id                        bigint not null,
+  id                        bigserial not null,
   name                      varchar(255),
   introduced                timestamp,
   discontinued              timestamp,
