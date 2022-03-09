@@ -7,6 +7,7 @@
     <title>Computers database</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/bootstrap/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/custom.css")">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
@@ -14,7 +15,10 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="@routes.HomeController.index()">Play sample application &mdash; Computer database</a>
+      <div class="col-sm-8">
+        <a class="navbar-brand" href="@routes.HomeController.index()">Play sample application &mdash; Computer database</a>
+      </div>
+    @header()
     </nav>
 
     <main role="main" class="container-fluid">

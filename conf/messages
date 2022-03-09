@@ -1,5 +1,5 @@
 # Messages
 
 computers.list.title={0,choice,0#No computers|1#One computer|1<{0,number,integer} computers} found
-
+departments.list.title={0,choice,0#No departments|1#One department|1<{0,number,integer} departments} found
 

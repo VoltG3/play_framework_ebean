@@ -52,7 +52,7 @@
 
 @main {
 
-  <h1 class="my-3" id="page-title">@Messages("computers.list.title", currentPage.getTotalCount)</h1>
+  <h1 class="my-3" id="page-title">@Messages("departments.list.title", currentPage.getTotalCount)</h1>
 
   @request.flash.asScala().get("success").map { successFlashValue =>
     <div class="alert alert-warning" role="alert">
