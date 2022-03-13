@@ -18,5 +18,6 @@ lazy val root = (project in file("."))
       "org.postgresql" % "postgresql" % "42.3.3",
     ),
     testOptions in Test += Tests.Argument(TestFrameworks.JUnit, "-a", "-v"),
-    javacOptions ++= Seq("-Xlint:unchecked", "-Xlint:deprecation", "-Werror")
+    javacOptions ++= Seq("-Xlint:unchecked", "-Xlint:deprecation", "-Werror"),
+    javaOptions in Test += "-Dconfig.file=conf/application.test.conf"
   )
