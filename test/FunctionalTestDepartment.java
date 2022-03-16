@@ -15,14 +15,6 @@ import static play.test.Helpers.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FunctionalTestDepartment extends WithApplication {
 
-    /* @Test
-    public void redirectHomePage() {
-        Result result = route(app, controllers.routes.HomeController.index());
-
-        assertThat(result.status()).isEqualTo(SEE_OTHER);
-        assertThat(result.redirectLocation().get()).isEqualTo("/computers");
-    } */
-
     @Test
     public void listDepartmentOnTheFirstPage() {
         Result result = route(app, controllers.routes.HomeControllerDepartment.list(0, "name", "asc", ""));
@@ -38,39 +30,5 @@ public class FunctionalTestDepartment extends WithApplication {
         assertThat(result.status()).isEqualTo(OK);
         assertThat(contentAsString(result)).contains("2 departments found");
     }
-
-    /* 
-    @Test
-    public void createANewComputer() {
-        Result result = route(app, addCSRFToken(fakeRequest().uri(controllers.routes.HomeController.save().url())));
-        assertThat(result.status()).isEqualTo(OK);
-
-        Map<String, String> data = new HashMap<>();
-        data.put("name", "FooBar");
-        data.put("introduced", "badbadbad");
-        data.put("company.id", "1");
-
-        String saveUrl = controllers.routes.HomeController.save().url();
-        result = route(app, addCSRFToken(fakeRequest().bodyForm(data).method("POST").uri(saveUrl)));
-
-        assertThat(result.status()).isEqualTo(BAD_REQUEST);
-        assertThat(contentAsString(result)).contains("<option value=\"1\" selected=\"selected\">Apple Inc.</option>");
-        //  <input type="text" id="introduced" name="introduced" value="badbadbad" aria-describedby="introduced_info_0 introduced_error_0" aria-invalid="true" class="form-control">
-        assertThat(contentAsString(result)).contains("<input class=\"form-control is-invalid\" type=\"date\" id=\"introduced\" name=\"introduced\" value=\"badbadbad\" ");
-        // <input type="text" id="name" name="name" value="FooBar" aria-describedby="name_info_0" required="true" class="form-control">
-        assertThat(contentAsString(result)).contains("<input class=\"form-control\" type=\"text\" id=\"name\" name=\"name\" value=\"FooBar\" ");
-
-        data.put("introduced", "2011-12-24");
-
-        result = route(app, fakeRequest().bodyForm(data).method("POST").uri(saveUrl));
-
-        assertThat(result.status()).isEqualTo(SEE_OTHER);
-        assertThat(result.redirectLocation().get()).isEqualTo("/computers");
-        assertThat(result.flash().get("success").get()).isEqualTo("Computer FooBar has been created");
-
-        result = route(app, controllers.routes.HomeController.list(0, "name", "asc", "FooBar"));
-        assertThat(result.status()).isEqualTo(OK);
-        assertThat(contentAsString(result)).contains("One computer found");
-    } */
 
 }
